@@ -1,2 +1,2 @@
 # mongo-api-node
-A basic Api being developed in nodeJs with mongoDb.
+An Api being developed in nodeJs with mongoDb.
