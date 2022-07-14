@@ -15,7 +15,7 @@ const billSchema = new mongoose.Schema({
     },
     amount: {
         type: Number,
-        default: 0
+        required: true
     }
 });
 

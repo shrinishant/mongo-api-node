@@ -1,10 +1,12 @@
 const express = require("express");
-const { getBills, addBill, updateBill, deleteBill } = require("../controllers/billController");
+const { getBills, getBill, addBill, updateBill, deleteBill } = require("../controllers/billController");
 
 const app = express();
 
 app.get("/bills", getBills);
-app.post("/add_bill", addBill);
+app.get("/bill/:id", getBill);
+
+app.post("/addBill", addBill);
 app.put("/bill/:id", updateBill);
 app.delete("/bill/:id", deleteBill);
 
