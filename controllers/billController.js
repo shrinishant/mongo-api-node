@@ -10,6 +10,15 @@ const getBills = async (req, res) => {
     })
 }
 
+// get particular Bill
+const getBill = async (req, res) => {
+    const bill = await Bill.findById(req.params.id);
+
+    res.status(200).json({
+        bill
+    })
+}
+
 
 // add Bill
 const addBill = async (req, res) => {
@@ -49,4 +58,4 @@ const deleteBill = async (req, res) => {
     })
 }
 
-module.exports = {getBills, addBill, updateBill, deleteBill};
+module.exports = {getBills, getBill, addBill, updateBill, deleteBill};
