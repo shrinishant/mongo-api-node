@@ -3,7 +3,21 @@ const Bill = require("../models/billModel")
 
 // getAllBills
 const getBills = async (req, res) => {
-    const bills = await Bill.find();
+
+    const sort = req.query.sort || 'asc';
+    // hardcoding this to 9 for now
+    const limit = 9;
+    const page = parseInt(req.query.page) - 1 || 0;
+
+    let sortOrder = 1;
+    if(sort == "desc"){
+        sortOrder = -1;
+    }
+
+    const bills = await Bill.find()
+    .sort({"amount": sortOrder})
+    .skip(page * limit)
+    .limit(limit);
 
     res.status(200).json({
         bills
