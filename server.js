@@ -1,12 +1,14 @@
 const express = require("express");
 const Router = require("./routes/billRoutes");
 const dbConnection = require("./utils/dbConnection");
+const cors = require('cors');
 require('dotenv').config()
 
 dbConnection();
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 app.use(Router);
