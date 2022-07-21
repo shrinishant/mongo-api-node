@@ -14,19 +14,17 @@ const getBills = async (req, res) => {
         sortOrder = -1;
     }
 
+    let totalBills;
+
+    await Bill.find()
+    .then((bills) => {
+        totalBills = bills.length;
+    });
+    
     const bills = await Bill.find()
     .sort({"amount": sortOrder})
     .skip(page * limit)
     .limit(limit);
-
-    let totalBills;
-    Bill.countDocuments({}, function (err, count) {
-        if (err){
-            console.log(err)
-        }else{
-            totalBills = count;
-        }
-    });
 
     res.status(200).json({
         bills,
