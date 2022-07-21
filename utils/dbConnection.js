@@ -7,8 +7,6 @@ const dbConn = async () => {
     const cluster = process.env.CLUSTER;
     const dbname = process.env.DBNAME;
 
-    console.log(username, password, cluster);
-
     mongoose.connect(
         `mongodb+srv://${username}:${password}@${cluster}.mongodb.net/${dbname}?retryWrites=true&w=majority`,
         {
