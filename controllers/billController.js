@@ -15,7 +15,7 @@ const getBills = async (req, res) => {
     }
 
     let totalBills;
-    Bill.countDocuments({}, function (err, count) {
+    await Bill.countDocuments({}, function (err, count) {
         if (err){
             console.log(err)
         }else{
