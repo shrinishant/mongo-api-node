@@ -14,19 +14,19 @@ const getBills = async (req, res) => {
         sortOrder = -1;
     }
 
+    const bills = await Bill.find()
+    .sort({"amount": sortOrder})
+    .skip(page * limit)
+    .limit(limit);
+
     let totalBills;
-    await Bill.countDocuments({}, function (err, count) {
+    Bill.countDocuments({}, function (err, count) {
         if (err){
             console.log(err)
         }else{
             totalBills = count;
         }
     });
-
-    const bills = await Bill.find()
-    .sort({"amount": sortOrder})
-    .skip(page * limit)
-    .limit(limit);
 
     res.status(200).json({
         bills,
